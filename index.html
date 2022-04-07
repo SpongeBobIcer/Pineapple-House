@@ -93,7 +93,7 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h1 id="Dijkstra（链式前向星-堆优化）"><a href="#Dijkstra（链式前向星-堆优化）" class="headerlink" title="Dijkstra（链式前向星+堆优化）"></a>Dijkstra（链式前向星+堆优化）</h1><h2 id="链式前向星"><a href="#链式前向星" class="headerlink" title="链式前向星"></a>链式前向星</h2><p>众所周知存图方式一般有两种，利用n^2^矩阵存图的<code>邻接矩阵</code>和链表形式的<code>邻接表</code>。</p>
+        <h1 id="Dijkstra（链式前向星-堆优化）"><a href="#Dijkstra（链式前向星-堆优化）" class="headerlink" title="Dijkstra（链式前向星+堆优化）"></a>Dijkstra（链式前向星+堆优化）</h1><h2 id="链式前向星"><a href="#链式前向星" class="headerlink" title="链式前向星"></a>链式前向星</h2><p>众所周知存图方式一般有两种，利用n^2矩阵存图的<code>邻接矩阵</code>和链表形式的<code>邻接表</code>。</p>
 <p>链式前向星本质就是一种利用数组模拟代替链表的邻接表存图方式,形式如下</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Edge</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> u,v,w,next;</span><br><span class="line">&#125;e[MAXN];</span><br><span class="line"><span class="keyword">int</span> cnt，head[MAXN];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> v,<span class="keyword">int</span> w)</span></span>&#123;</span><br><span class="line">    e[cnt].u=u;</span><br><span class="line">    e[cnt].v=v;</span><br><span class="line">    e[cnt].w=w;</span><br><span class="line">    e[cnt].next=head[u];</span><br><span class="line">    head[u]=cnt++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -118,7 +118,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/04/07/Shortest-path-Dijkstra/" data-id="cl1olrhwr0000yowk2rdf7i92" data-title="Shortest-path-Dijkstra" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/04/07/Shortest-path-Dijkstra/" data-id="cl1olsvf2000038wk06v881ic" data-title="Shortest-path-Dijkstra" class="article-share-link">Share</a>
       
       
       
@@ -171,7 +171,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/09/08/hello-world/" data-id="cl1olrhwv0001yowk37pl1lh4" data-title="Hello World" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/09/08/hello-world/" data-id="cl1olsvfc000338wkcomjhro7" data-title="Hello World" class="article-share-link">Share</a>
       
       
       
