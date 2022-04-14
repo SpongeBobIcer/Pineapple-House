@@ -6,11 +6,15 @@
   
   <title>Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta property="og:type" content="website">
+  <meta name="description" content="二叉堆（大根堆小根堆）二叉堆介绍定义 最大堆：父结点的键值总是大于或等于任何一个子节点的键值；最小堆：父结点的键值总是小于或等于任何一个子节点的键值。 摆烂的数据结构，因为只需要维护堆中最大&#x2F;最小元素并置于堆顶，所以建好满足性质的二叉树后，每次只需要让新插入的节点进行一次时间复杂度log(n)的遍历保证其在的一条支脉符合二叉堆性质即可 查询的时间复杂度为log(1),但是只能查询最大&#x2F;最小值 so">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/index.html">
+<meta property="og:url" content="http://example.com/2022/04/14/%E4%BA%8C%E5%8F%89%E5%A0%86/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="二叉堆（大根堆小根堆）二叉堆介绍定义 最大堆：父结点的键值总是大于或等于任何一个子节点的键值；最小堆：父结点的键值总是小于或等于任何一个子节点的键值。 摆烂的数据结构，因为只需要维护堆中最大&#x2F;最小元素并置于堆顶，所以建好满足性质的二叉树后，每次只需要让新插入的节点进行一次时间复杂度log(n)的遍历保证其在的一条支脉符合二叉堆性质即可 查询的时间复杂度为log(1),但是只能查询最大&#x2F;最小值 so">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-04-14T08:12:09.607Z">
+<meta property="article:modified_time" content="2022-04-14T08:11:55.495Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -69,9 +73,7 @@
 </header>
 
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-二叉堆" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+        <section id="main"><article id="post-二叉堆" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2022/04/14/%E4%BA%8C%E5%8F%89%E5%A0%86/" class="article-date">
   <time class="dt-published" datetime="2022-04-14T08:12:09.607Z" itemprop="datePublished">2022-04-14</time>
@@ -120,123 +122,19 @@
     </footer>
   </div>
   
-</article>
-
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-Shortest-path-Dijkstra" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/04/07/Shortest-path-Dijkstra/" class="article-date">
-  <time class="dt-published" datetime="2022-04-07T05:57:11.000Z" itemprop="datePublished">2022-04-07</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/04/07/Shortest-path-Dijkstra/">Shortest-path-Dijkstra</a>
-    </h1>
+    <a href="/2022/04/07/Shortest-path-Dijkstra/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Shortest-path-Dijkstra</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="Dijkstra（链式前向星-堆优化）"><a href="#Dijkstra（链式前向星-堆优化）" class="headerlink" title="Dijkstra（链式前向星+堆优化）"></a>Dijkstra（链式前向星+堆优化）</h1><h2 id="链式前向星"><a href="#链式前向星" class="headerlink" title="链式前向星"></a>链式前向星</h2><p>众所周知存图方式一般有两种，利用n^2矩阵存图的<code>邻接矩阵</code>和链表形式的<code>邻接表</code>。</p>
-<p>链式前向星本质就是一种利用数组模拟代替链表的邻接表存图方式,形式如下</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Edge</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> u,v,w,next;</span><br><span class="line">&#125;e[MAXN];</span><br><span class="line"><span class="keyword">int</span> cnt，head[MAXN];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> v,<span class="keyword">int</span> w)</span></span>&#123;</span><br><span class="line">    e[cnt].u=u;</span><br><span class="line">    e[cnt].v=v;</span><br><span class="line">    e[cnt].w=w;</span><br><span class="line">    e[cnt].next=head[u];</span><br><span class="line">    head[u]=cnt++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>cnt作为一个<code>模拟指针</code>，每次操作后永远指向数组未使用的最前端，方便下一次插入,<code>cnt的值没有意义</code>。</p>
-<p>遍历操作如下</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=head[u];i;i=e[i].next)&#123;</span><br><span class="line">	<span class="keyword">int</span> v=e[i].v;</span><br><span class="line">	<span class="keyword">int</span> w=e[i].w;</span><br><span class="line">	<span class="keyword">int</span> u=e[i].w;</span><br><span class="line">	<span class="keyword">int</span> next=e[i].next;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>如果i指向空,即数组未使用区域则遍历结束,否者指向下一条链接的边；</p>
-<h2 id="用优先队列维护的堆结构"><a href="#用优先队列维护的堆结构" class="headerlink" title="用优先队列维护的堆结构"></a>用优先队列维护的堆结构</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">priority_queue&lt;pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt;&gt;;</span><br></pre></td></tr></table></figure>
-
-<p>优先队列默认为<code>大根堆</code>,而Dijkstra求最短路中每次都是对最小的dis进行处理而非最大，所以我们需要将其变形,这里提供2种方法；</p>
-<h3 id="重载运算符"><a href="#重载运算符" class="headerlink" title="重载运算符"></a>重载运算符</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">cmp</span>&#123;</span></span><br><span class="line">	<span class="function"><span class="keyword">bool</span> <span class="title">operator</span><span class="params">()</span><span class="params">(pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt;&amp;a,pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt;&amp;b)</span></span>&#123;</span><br><span class="line">		<span class="keyword">return</span>  a.first&gt;b.first;</span><br><span class="line">	&#125;	</span><br><span class="line">&#125;;</span><br><span class="line">priority_queue&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;,vector&lt;pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; &gt;,cmp&gt; q;</span><br><span class="line"><span class="comment">//cmp等价于geater&lt;pair&lt;int,int&gt; &gt;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="赋值时取负值"><a href="#赋值时取负值" class="headerlink" title="赋值时取负值"></a>赋值时取负值</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">q.<span class="built_in">push</span>(<span class="built_in">make_pair</span>(-dis[v],v))</span><br></pre></td></tr></table></figure>
-
-<p>取负值可以让大根堆当成小根堆来用</p>
-<h2 id="Dijkstra完整代码"><a href="#Dijkstra完整代码" class="headerlink" title="Dijkstra完整代码"></a>Dijkstra完整代码</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAXN 10010</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAXM 500010</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> INF 10000000</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Edge</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> u,v,w,next;</span><br><span class="line">&#125;e[MAXM];</span><br><span class="line"><span class="keyword">int</span> cnt,head[MAXN],dis[MAXN];</span><br><span class="line"><span class="keyword">int</span> n,m,s;</span><br><span class="line"><span class="keyword">bool</span> vis[MAXN];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> v,<span class="keyword">int</span> w)</span></span>&#123;</span><br><span class="line">	e[cnt].u=u;</span><br><span class="line">	e[cnt].w=w;</span><br><span class="line">	e[cnt].v=v;</span><br><span class="line">	e[cnt].next=head[u];</span><br><span class="line">	head[u]=cnt++;</span><br><span class="line">&#125;</span><br><span class="line">priority_queue&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;,vector&lt;pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt;&gt;,greater&lt;pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt;&gt;&gt; q;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dijkstra</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">		dis[i]=INF;</span><br><span class="line">	&#125;</span><br><span class="line">	dis[s]=<span class="number">0</span>;<span class="comment">//初始点dis赋值为0;</span></span><br><span class="line">	q.<span class="built_in">push</span>(<span class="built_in">make_pair</span>(<span class="number">0</span>,s));</span><br><span class="line">	<span class="keyword">while</span>(!q.<span class="built_in">empty</span>())&#123;</span><br><span class="line">		pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt;now;</span><br><span class="line">		now=q.<span class="built_in">top</span>();</span><br><span class="line">		q.<span class="built_in">pop</span>();</span><br><span class="line">		<span class="keyword">int</span> u=now.second;</span><br><span class="line">		<span class="keyword">if</span>(vis[u])<span class="keyword">continue</span>;</span><br><span class="line">		vis[u]=<span class="number">1</span>;<span class="comment">//每个点作为起点只遍历一次 </span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=head[u];i;i=e[i].next)&#123;</span><br><span class="line">			<span class="keyword">int</span> v=e[i].v;</span><br><span class="line">			<span class="keyword">if</span>(dis[v]&gt;dis[u]+e[i].w)&#123;</span><br><span class="line">				dis[v]=dis[u]+e[i].w;</span><br><span class="line">				q.<span class="built_in">push</span>(<span class="built_in">make_pair</span>(dis[v],v));</span><br><span class="line">			&#125; </span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	cin&gt;&gt;n&gt;&gt;m&gt;&gt;s;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=m;i++)&#123;</span><br><span class="line">		<span class="keyword">int</span> x,y,z;</span><br><span class="line">		cin&gt;&gt;x&gt;&gt;y&gt;&gt;z;</span><br><span class="line">		<span class="built_in">add</span>(x,y,z);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">dijkstra</span>();</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(dis[i]!=INF)cout&lt;&lt;dis[i]&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">		<span class="keyword">else</span> cout&lt;&lt;(<span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span>)<span class="built_in">pow</span>(<span class="number">2</span>,<span class="number">31</span>)<span class="number">-1</span>&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/04/07/Shortest-path-Dijkstra/" data-id="cl1yq4ybr0000xcwk7te9exzu" data-title="Shortest-path-Dijkstra" class="article-share-link">Share</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Shortest-path-Dijkstra/" rel="tag">-Shortest path -Dijkstra</a></li></ul>
-
-    </footer>
-  </div>
   
 </article>
-
-
-
-  
-    <article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2021/09/08/hello-world/" class="article-date">
-  <time class="dt-published" datetime="2021-09-08T05:39:17.438Z" itemprop="datePublished">2021-09-08</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/09/08/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2021/09/08/hello-world/" data-id="cl1yq4ybv0001xcwkdw2g42ud" data-title="Hello World" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
 </section>
